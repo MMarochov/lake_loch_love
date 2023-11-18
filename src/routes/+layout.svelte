@@ -6,7 +6,7 @@
 	<main>
 		<slot />
 	</main>
-	<footer>Mel Marochov, Data Scientist @ Ordnance Survey | Thanks to Jess Baker and Paul Naylor from the OS GeoDataViz team for providing the data | Contains OS data © Crown copyright and database rights 2023</footer>
+	<footer>Mel Marochov, Data Scientist @ Ordnance Survey | Thanks to Jess Baker and Paul Naylor from GeoDataViz for the data | Inspiration: https://willymaps.github.io/depth/ | Contains OS data © Crown copyright and database rights 2023</footer>
 </div>
 
 <style>
