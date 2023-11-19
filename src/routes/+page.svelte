@@ -120,17 +120,32 @@
       speed: 0.8,
       bearing: 0,
     });
+
+    map.addLayer({
+      id: "poi-labels",
+      type: "symbol",
+      source: "lakes",
+      layout: {
+        "text-field": ["get", "name"],
+        "text-variable-anchor": ["top", "bottom", "left", "right"],
+        "text-radial-offset": 0.5,
+        "text-justify": "auto",
+        "icon-image": ["concat", ["get", "icon"], "_15"],
+      },
+    });
   }
+
 </script>
 
 <main>
   <section class="header">
+    <div class="banner">
     <a href="https://www.ordnancesurvey.co.uk/" target="_blank"
       ><picture>
         <source srcset={OS_logo} type="image/png" />
         <img src={OS_logo} alt="OS Logo" />
       </picture></a
-    >
+    ><p>#30DayMapChallenge</p></div>
     <button on:click={() => (showModal = true)}
       ><span class="material-symbols-outlined"> info </span></button
     >
@@ -162,6 +177,7 @@
           target="_blank">fantastic visualisation of the Great Lakes!</a
         >
       </p>
+      <p>#30DayMapChallenge</p>
     </Modal>
   </section>
   <h1>The Bathymetry of the Lake District National Park</h1>
@@ -201,7 +217,13 @@
     align-self: center;
   }
 
+  .banner {
+    display: flex;
+    align-items: center;
+  }
+
   h1 {
+    font-weight: bold;
     font-size: 1.5rem;
     margin: 0;
   }
