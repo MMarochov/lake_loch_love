@@ -30,7 +30,7 @@
     display: inline-flex;
     font-family: "JetBrains Mono", monospace;
     padding: 8px;
-    margin: 2px;
+    margin: 3px;
     transition: box-shadow 0.15s, transform 0.15s;
     user-select: none;
     -webkit-user-select: none;
@@ -50,7 +50,7 @@
   }
 
   button:active {
-    box-shadow: #3c4fe0 0 3px 7px inset;
-    transform: translateY(2px);
+    box-shadow: #374adf 0 3px 7px inset;
+    transform: translateY(4px);
   }
 </style>

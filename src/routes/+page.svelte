@@ -8,6 +8,7 @@
   import { GeoJsonLayer } from "$lib/layers/geojsonlayer";
   import data from "$lib/data/merged_lakes.json";
   import OS_logo from "$lib/images/OS_logo_mono_dark_rgb.png";
+  import { key } from "$lib/key";
   // import { config } from 'dotenv';
   // config();
   // let key = process.env.OS_API_KEY;
@@ -15,7 +16,6 @@
 
   // Init
   let showModal = false;
-  let key = "";
   let map: MapLibreMap;
 
   let lakes = [
@@ -23,13 +23,19 @@
       name: "Bassenthwaite Lake",
       coordinates: [-3.214059, 54.649457],
       zoom: 11.3,
+      imageUrl: "$lib/images/bassenthwaite.png",
+      imageSize: 32,
     },
     {
       name: "Ennerdale Water",
       coordinates: [-3.379274, 54.521432],
       zoom: 11.8,
     },
-    { name: "Esthwaite Water", coordinates: [-2.984238, 54.358801], zoom: 12.5 },
+    {
+      name: "Esthwaite Water",
+      coordinates: [-2.984238, 54.358801],
+      zoom: 12.5,
+    },
     { name: "Grasmere", coordinates: [-3.021468, 54.449453], zoom: 13 },
     {
       name: "Haweswater Reservoir",
@@ -81,7 +87,7 @@
   const options: MapOptions = {
     container: "",
     minZoom: 6,
-    maxZoom: 18,
+    maxZoom: 13,
     pitch: 50,
     dragRotate: true,
     style:
@@ -99,10 +105,6 @@
   $: if (map) {
     map.on("load", () => {
       layer.setMap(map).render();
-      // map.flyTo({
-      // center: [-2.875814, 54.578490],
-      // pitch:30,
-      // zoom:12 });
     });
   }
 
@@ -115,84 +117,110 @@
       center: coordinates,
       pitch: 30,
       zoom: zoom,
+      speed: 0.8,
+      bearing: 0,
     });
   }
 </script>
 
 <main>
   <section class="header">
-    <picture>
-      <source srcset={OS_logo} type="image/png" />
-      <img src={OS_logo} alt="OS Logo" />
-    </picture>
-	<button on:click={() => (showModal = true)}><span class="material-symbols-outlined">
-		info
-		</span></button>
+    <a href="https://www.ordnancesurvey.co.uk/" target="_blank"
+      ><picture>
+        <source srcset={OS_logo} type="image/png" />
+        <img src={OS_logo} alt="OS Logo" />
+      </picture></a
+    >
+    <button on:click={() => (showModal = true)}
+      ><span class="material-symbols-outlined"> info </span></button
+    >
 
-<Modal bind:showModal>
-	<h2 slot="header">
-		modal
-		<small><em>adjective</em> mod·al \ˈmō-dəl\</small>
-	</h2>
+    <Modal bind:showModal>
+      <h2 slot="header">
+        Bathymetry
+        <small
+          ><em>noun</em>/ˌbəˈθɪmətri/ the measurement of depth of water in
+          oceans, seas, or lakes.</small
+        >
+      </h2>
 
-	<ol class="definition-list">
-		<li>of or relating to modality in logic</li>
-		<li>
-			containing provisions as to the mode of procedure or the manner of taking effect —used of a
-			contract or legacy
-		</li>
-		<li>of or relating to a musical mode</li>
-		<li>of or relating to structure as opposed to substance</li>
-		<li>
-			of, relating to, or constituting a grammatical form or category characteristically indicating
-			predication
-		</li>
-		<li>of or relating to a statistical mode</li>
-	</ol>
-
-	<a href="https://www.merriam-webster.com/dictionary/modal">merriam-webster.com</a>
-</Modal>
+      <p class="definition-list" />
+      <p class="spaced">
+        Welcome to this interactive 3D visualisation showing the bathymetry of
+        the Lake District National Park! Take a dive into your favourite lakes
+        by clicking on the buttons or panning around the map.
+      </p>
+      <p class="spaced">
+        The data comes from historic bathymetric contours in Ordnance Survey's
+        1:50,000 maps. Thanks go to Jess Baker and Paul Naylor from OS's
+        GeoDataViz team for their manual digitisation of the depth data, which
+        appears in 10m increments.
+      </p>
+      <p class="spaced">
+        Inspired by William B Davis's <a
+          href="https://willymaps.github.io/depth/"
+          target="_blank">fantastic visualisation of the Great Lakes!</a
+        >
+      </p>
+    </Modal>
   </section>
   <h1>The Bathymetry of the Lake District National Park</h1>
-  <p>Choose a lake to explore!</p>
-  <section class="button-container">
-    {#each lakes as lake}
-      <ZoomButton
-        {lake}
-        on:zoomButtonClick={() =>
-          handleZoomButtonClick({
-            coordinates: lake.coordinates,
-            zoom: lake.zoom,
-          })}
-      />
-    {/each}
-  </section>
 
-  <Map {options} bind:map />
+  <p>Choose a lake to explore!</p>
+  <section class="content-container">
+    <section class="button-container">
+      {#each lakes as lake}
+        <ZoomButton
+          {lake}
+          on:zoomButtonClick={() =>
+            handleZoomButtonClick({
+              coordinates: lake.coordinates,
+              zoom: lake.zoom,
+            })}
+        />
+      {/each}
+    </section>
+
+    <Map {options} bind:map />
+  </section>
+  <p class="instructions">
+    <span class="material-symbols-outlined"> drag_pan </span> Left click and
+    drag to move <span class="material-symbols-outlined"> mouse </span> Scroll
+    to zoom <span class="material-symbols-outlined"> right_click </span> Right click
+    to pan
+  </p>
 </main>
 
 <style>
   main {
-    font-family: "JetBrains Mono", monospace;
     position: relative;
     height: 100%;
     width: 100%;
     border-radius: 20px;
     text-align: center;
+    align-self: center;
   }
 
   h1 {
     font-size: 1.5rem;
-	margin: 0;
+    margin: 0;
   }
 
   p {
-	margin: 6px;
+    margin: 6px;
+  }
+
+  .spaced {
+    margin: 14px;
+  }
+
+  .instructions {
+    display: none;
   }
 
   .header {
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
   }
 
   img {
@@ -206,16 +234,32 @@
     justify-content: center;
   }
 
-  button {
-	display: flex;
-	border-radius: 50%;
-	height: fit-content;
-    border: none;
-    padding: 3px;
-	margin: 8px;
+  .content-container {
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  span {
-	color: #333333;
+  @media (min-width: 750px) {
+    .content-container {
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    .button-container {
+      max-width: min-content;
+    }
+
+    .instructions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .instructions > span {
+      padding: 0 2px 0 12px;
+    }
   }
 </style>
