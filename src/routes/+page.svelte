@@ -8,10 +8,10 @@
   import { GeoJsonLayer } from "$lib/layers/geojsonlayer";
   import data from "$lib/data/merged_lakes.json";
   import OS_logo from "$lib/images/OS_logo_mono_dark_rgb.png";
-  import { key } from "$lib/key";
-  // import { config } from 'dotenv';
-  // config();
-  // let key = process.env.OS_API_KEY;
+  // import { key } from "$lib/key";
+  import { config } from 'dotenv';
+  config();
+  let key = process.env.key;
   // console.log(key)
 
   // Init
