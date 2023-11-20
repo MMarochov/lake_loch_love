@@ -13,6 +13,8 @@
 
 <style>
   button {
+    min-width: 115px;
+    justify-content: center;
     align-items: center;
     background-image: radial-gradient(
       100% 100% at 100% 0,

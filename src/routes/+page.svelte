@@ -6,48 +6,44 @@
   import Modal from "$lib/components/Modal.svelte";
   import type { Map as MapLibreMap, MapOptions } from "maplibre-gl";
   import { GeoJsonLayer } from "$lib/layers/geojsonlayer";
-  import data from "$lib/data/merged_lakes.json";
+  import lakes_data from "$lib/data/merged_lakes.json";
   import OS_logo from "$lib/images/OS_logo_mono_dark_rgb.png";
-  // import { key } from "$lib/key";
-  import { config } from 'dotenv';
-  config();
-  let key = process.env.key;
-  // console.log(key)
-
+  
+  
   // Init
+  export let data
+  let key = data.OS_API_KEY
   let showModal = false;
   let map: MapLibreMap;
 
   let lakes = [
+    { name: "Wast Water", coordinates: [-3.296972, 54.439684], zoom: 11.7 },
     {
       name: "Bassenthwaite Lake",
       coordinates: [-3.214059, 54.649457],
       zoom: 11.3,
-      imageUrl: "$lib/images/bassenthwaite.png",
-      imageSize: 32,
     },
+    { name: "Ullswater", coordinates: [-2.886104, 54.572089], zoom: 10.5 },
     {
       name: "Ennerdale Water",
       coordinates: [-3.379274, 54.521432],
       zoom: 11.8,
     },
     {
-      name: "Esthwaite Water",
-      coordinates: [-2.984238, 54.358801],
-      zoom: 12.5,
-    },
-    { name: "Grasmere", coordinates: [-3.021468, 54.449453], zoom: 13 },
-    {
       name: "Haweswater Reservoir",
       coordinates: [-2.801575, 54.513816],
       zoom: 11.3,
     },
+    { name: "Grasmere", coordinates: [-3.021468, 54.449453], zoom: 13 },
+    {
+      name: "Esthwaite Water",
+      coordinates: [-2.984238, 54.358801],
+      zoom: 12.5,
+    },
     { name: "Rydal Water", coordinates: [-2.995182, 54.446928], zoom: 12 },
-    { name: "Ullswater", coordinates: [-2.886104, 54.572089], zoom: 10.5 },
-    { name: "Wast Water", coordinates: [-3.296972, 54.439684], zoom: 11.7 },
   ];
 
-  let layer = new GeoJsonLayer("test", "Blue Shape", data, "fill-extrusion", {
+  let layer = new GeoJsonLayer("test", "Blue Shape", lakes_data, "fill-extrusion", {
     // See the MapLibre Style Specification for details on data expressions.
     // https://maplibre.org/maplibre-style-spec/expressions/
 
@@ -106,7 +102,65 @@
     map.on("load", () => {
       layer.setMap(map).render();
     });
+    // url: '/src/lib/images/bassenthwaite.png'
+
+    let images = [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png',
+        coordinates: [-3.237511, 54.647718]
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png',
+        coordinates: [-2.797794, 54.515428]
+      }
+    ];
+
+    images.forEach((imageObj, index) => {
+      map.loadImage(imageObj.url, (error, image) => {
+        if (error) throw error;
+        map.addImage(`image-${index}`, image);
+        map.addSource(`point-${index}`, {
+          'type': 'geojson',
+          'data': {
+            'type': 'FeatureCollection',
+            'features' : [
+              {
+                'type': 'Feature',
+                'geometry': {
+                  'type': 'Point',
+                  'coordinates': imageObj.coordinates
+                }
+              }
+            ]
+          }
+        });
+        map.addLayer({
+          'id': `points-${index}`,
+          'type': 'symbol',
+          'source': `point-${index}`,
+          'layout': {
+            'icon-image': `image-${index}`,
+            'icon-size': 0.5
+          }
+        });
+        // Move the image layer above other layers
+        map.moveLayer(`points-${index}`);
+      });
+    })
   }
+
+  // Helper function to find the layer ID by name
+function findLayerIdByName(style, layerName) {
+  const layers = style.layers;
+  for (let i = 0; i < layers.length; i++) {
+    const layer = layers[i];
+    if (layer.type !== 'background' && layer.id.indexOf(layerName) !== -1) {
+      return layer.id;
+    }
+  }
+  return null;
+} 
+
 
   function handleZoomButtonClick(event) {
     let coordinates = event.coordinates;
@@ -120,32 +174,20 @@
       speed: 0.8,
       bearing: 0,
     });
-
-    map.addLayer({
-      id: "poi-labels",
-      type: "symbol",
-      source: "lakes",
-      layout: {
-        "text-field": ["get", "name"],
-        "text-variable-anchor": ["top", "bottom", "left", "right"],
-        "text-radial-offset": 0.5,
-        "text-justify": "auto",
-        "icon-image": ["concat", ["get", "icon"], "_15"],
-      },
-    });
   }
-
 </script>
 
 <main>
   <section class="header">
     <div class="banner">
-    <a href="https://www.ordnancesurvey.co.uk/" target="_blank"
-      ><picture>
-        <source srcset={OS_logo} type="image/png" />
-        <img src={OS_logo} alt="OS Logo" />
-      </picture></a
-    ><p>#30DayMapChallenge</p></div>
+      <a href="https://www.ordnancesurvey.co.uk/" target="_blank"
+        ><picture>
+          <source srcset={OS_logo} type="image/png" />
+          <img src={OS_logo} alt="OS Logo" />
+        </picture></a
+      >
+      <p>#30DayMapChallenge</p>
+    </div>
     <button on:click={() => (showModal = true)}
       ><span class="material-symbols-outlined"> info </span></button
     >
@@ -220,6 +262,7 @@
   .banner {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   h1 {
