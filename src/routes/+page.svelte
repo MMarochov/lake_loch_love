@@ -277,6 +277,10 @@
     });
   }
 </script>
+<svelte:head>
+	<title>Lake, Loch, Love</title>
+	<meta name="description" content="The Bathymetry of the Lake District National Park" />
+</svelte:head>
 
 <main>
   <section class="header">
