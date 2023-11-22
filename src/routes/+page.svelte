@@ -374,7 +374,7 @@
   }
 
   .banner > p {
-    margin: 0 0 6 10px;
+    margin: 0 0 6px 10px;
   }
 
   h1 {
