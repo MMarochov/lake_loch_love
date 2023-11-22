@@ -44,117 +44,127 @@
   ];
   // '/src/lib/images/wastwater.png'
   const geojson = {
-        'type': 'FeatureCollection',
-        'features': [
-            {
-                'type': 'Feature',
-                'properties': {
-                    'message': 'Wastwater',
-                    'iconSize': [250, 250],
-                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/wastwater.png?raw=true'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-3.296972, 54.439684]
-                }
-            },
-            {
-                'type': 'Feature',
-                'properties': {
-                    'message': 'Haweswater',
-                    'iconSize': [320, 320],
-                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/haweswater.png'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-2.811175, 54.508294]
-                }
-            },            {
-                'type': 'Feature',
-                'properties': {
-                    'message': 'Ullswater',
-                    'iconSize': [320, 320],
-                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/ullswater.png'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-2.922229, 54.555297]
-                }
-            },
-            {
-                'type': 'Feature',
-                'properties': {
-                    'message': 'Grasmere',
-                    'iconSize': [320, 320],
-                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/grasmere.png'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-3.024891, 54.451703]
-                }
-            },
-            {
-                'type': 'Feature',
-                'properties': {
-                    'message': 'Rydal',
-                    'iconSize': [320, 320],
-                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/rydal.png'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-2.989745, 54.435421]
-                }
-            },
-            {
-                'type': 'Feature',
-                'properties': {
-                    'message': 'Ennerdale',
-                    'iconSize': [320, 320],
-                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/ennerdale.png'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-3.388712, 54.511618]
-                }
-            },
-            {
-                'type': 'Feature',
-                'properties': {
-                    'message': 'Bassenthwaite',
-                    'iconSize': [390, 390],
-                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/bassenthwaite.png'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-3.221940, 54.644154]
-                }
-            },
-            {
-                'type': 'Feature',
-                'properties': {
-                    'message': 'Esthwaite',
-                    'iconSize': [380, 380],
-                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/esthwaite.png'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-2.992250, 54.354536]
-                }
-            },
-            {
-                'type': 'Feature',
-                'properties': {
-                    'message': 'Baz',
-                    'iconSize': [40, 40],
-                    'imageUrl': 'https://3dprintingindustry.com/wp-content/uploads/2017/09/time-100-influential-photos-loch-ness-monster-21.jpg'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-63.29223632812499, -18.28151823530889]
-                }
-            }
-        ]
-    };
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: {
+          message: "Wastwater",
+          iconSize: [250, 250],
+          imageUrl:
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/wastwater.png?raw=true",
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [-3.296972, 54.439684],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {
+          message: "Haweswater",
+          iconSize: [320, 320],
+          imageUrl:
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/haweswater.png",
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [-2.811175, 54.508294],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {
+          message: "Ullswater",
+          iconSize: [320, 320],
+          imageUrl:
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/ullswater.png",
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [-2.922229, 54.555297],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {
+          message: "Grasmere",
+          iconSize: [320, 320],
+          imageUrl:
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/grasmere.png",
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [-3.024891, 54.451703],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {
+          message: "Rydal",
+          iconSize: [320, 320],
+          imageUrl:
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/rydal.png",
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [-2.989745, 54.435421],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {
+          message: "Ennerdale",
+          iconSize: [320, 320],
+          imageUrl:
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/ennerdale.png",
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [-3.388712, 54.511618],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {
+          message: "Bassenthwaite",
+          iconSize: [390, 390],
+          imageUrl:
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/bassenthwaite.png",
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [-3.22194, 54.644154],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {
+          message: "Esthwaite",
+          iconSize: [380, 380],
+          imageUrl:
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/esthwaite.png",
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [-2.99225, 54.354536],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {
+          message: "Baz",
+          iconSize: [40, 40],
+          imageUrl:
+            "https://3dprintingindustry.com/wp-content/uploads/2017/09/time-100-influential-photos-loch-ness-monster-21.jpg",
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [-63.29223632812499, -18.28151823530889],
+        },
+      },
+    ],
+  };
 
   let layer = new GeoJsonLayer(
     "test",
@@ -231,72 +241,26 @@
       el.style.width = `${marker.properties.iconSize[0]}px`;
       el.style.height = `${marker.properties.iconSize[1]}px`;
 
-
-
       // add marker to map
       new maplibregl.Marker({ element: el })
         .setLngLat(marker.geometry.coordinates)
         .addTo(map);
 
-      let zoomThreshold = 10.4
+      let zoomThreshold = 10.4;
 
       // update marker visibility on map zoom
-  map.on('zoom', () => {
-    const zoom = map.getZoom();
+      map.on("zoom", () => {
+        const zoom = map.getZoom();
 
-    if (zoom < zoomThreshold) {
-      // Hide the marker if the zoom level is below the threshold
-      el.style.display = 'none';
-    } else {
-      // Show the marker if the zoom level is at or above the threshold
-      el.style.display = 'block';
-    }
-  });
-        
+        if (zoom < zoomThreshold) {
+          // Hide the marker if the zoom level is below the threshold
+          el.style.display = "none";
+        } else {
+          // Show the marker if the zoom level is at or above the threshold
+          el.style.display = "block";
+        }
+      });
     });
-    // url: '/src/lib/images/bassenthwaite.png'
-
-    let images = [
-      {
-        url: "https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png",
-        coordinates: [-3.237511, 54.647718],
-      },
-      {
-        url: "https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png",
-        coordinates: [-2.797794, 54.515428],
-      },
-    ];
-
-    // images.forEach((imageObj, index) => {
-    //   map.loadImage(imageObj.url, (error, image) => {
-    //     if (error) throw error;
-    //     map.addImage(`image-${index}`, image);
-    //     map.addSource(`point-${index}`, {
-    //       'type': 'geojson',
-    //       'data': {
-    //         'type': 'FeatureCollection',
-    //         'features' : [
-    //           {
-    //             'type': 'Feature',
-    //             'geometry': {
-    //               'type': 'Point',
-    //               'coordinates': imageObj.coordinates
-    //             }
-    //           }
-    //         ]
-    //       }
-    //     });
-    //     map.addLayer({
-    //       'id': `points-${index}`,
-    //       'type': 'symbol',
-    //       'source': `point-${index}`,
-    //       'layout': {
-    //         'icon-image': `image-${index}`,
-    //         'icon-size': 0.5
-    //       }
-    //     });
-    //   });
-    // })
   }
 
   function handleZoomButtonClick(event) {
@@ -387,7 +351,6 @@
 </main>
 
 <style>
-
   main {
     position: relative;
     height: 100%;
