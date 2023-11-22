@@ -181,21 +181,21 @@
         ["linear"],
         ["get", "depth"],
         0,
-        "#C2C2FF",
+        "#def5e5",
         10,
-        "#9999FF",
+        "#99ddb6",
         20,
-        "#7070ff",
+        "#4bc2ad",
         30,
-        "#4747ff",
+        "#359fab",
         40,
-        "#1f1fff",
+        "#357ba3",
         50,
-        "#0000f5",
+        "#3b5698",
         60,
-        "#00007a",
+        "#3e356b",
         70,
-        "#00003d",
+        "#2b1c35",
       ],
 
       // Get fill-extrusion-height from the source 'height' property.
@@ -217,8 +217,8 @@
     dragRotate: true,
     style:
       "https://raw.githubusercontent.com/OrdnanceSurvey/OS-Vector-Tile-API-Stylesheets/master/OS_VTS_3857_Open_Greyscale.json",
-    center: [-2.801575, 54.513816],
-    zoom: 11,
+    center: [-3.296972, 54.43968],
+    zoom: 11.5,
     transformRequest: (url) => {
       if (!/[?&]key=/.test(url)) url += `?key=${key}`;
       return {

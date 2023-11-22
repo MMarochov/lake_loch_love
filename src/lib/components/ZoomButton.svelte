@@ -18,8 +18,8 @@
     align-items: center;
     background-image: radial-gradient(
       100% 100% at 100% 0,
-      #5bc0fa89 0,
-      #7070ff 100%
+      #def5e5 0,
+      #569ec8 100%
     );
     border: 0;
     border-radius: 6px;
@@ -41,18 +41,18 @@
   }
 
   button:focus {
-    box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
-      rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+    box-shadow: #334c84 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+      rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #334c84 0 -3px 0 inset;
   }
 
   button:hover {
     box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
-      rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+      rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #334c84 0 -3px 0 inset;
     transform: translateY(-2px);
   }
 
   button:active {
-    box-shadow: #374adf 0 3px 7px inset;
+    box-shadow: #334c84 0 3px 7px inset;
     transform: translateY(4px);
   }
 </style>
