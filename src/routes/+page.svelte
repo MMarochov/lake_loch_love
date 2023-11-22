@@ -65,7 +65,7 @@
           message: "Haweswater",
           iconSize: [320, 320],
           imageUrl:
-            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/haweswater.png",
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/haweswater.png?raw=true",
         },
         geometry: {
           type: "Point",
@@ -78,7 +78,7 @@
           message: "Ullswater",
           iconSize: [320, 320],
           imageUrl:
-            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/ullswater.png",
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/ullswater.png?raw=true",
         },
         geometry: {
           type: "Point",
@@ -91,7 +91,7 @@
           message: "Grasmere",
           iconSize: [320, 320],
           imageUrl:
-            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/grasmere.png",
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/grasmere.png?raw=true",
         },
         geometry: {
           type: "Point",
@@ -104,7 +104,7 @@
           message: "Rydal",
           iconSize: [320, 320],
           imageUrl:
-            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/rydal.png",
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/rydal.png?raw=true",
         },
         geometry: {
           type: "Point",
@@ -117,7 +117,7 @@
           message: "Ennerdale",
           iconSize: [320, 320],
           imageUrl:
-            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/ennerdale.png",
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/ennerdale.png?raw=true",
         },
         geometry: {
           type: "Point",
@@ -130,7 +130,7 @@
           message: "Bassenthwaite",
           iconSize: [390, 390],
           imageUrl:
-            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/bassenthwaite.png",
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/bassenthwaite.png?raw=true",
         },
         geometry: {
           type: "Point",
@@ -143,7 +143,7 @@
           message: "Esthwaite",
           iconSize: [380, 380],
           imageUrl:
-            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/esthwaite.png",
+            "https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/esthwaite.png?raw=true",
         },
         geometry: {
           type: "Point",
