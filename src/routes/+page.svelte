@@ -42,7 +42,7 @@
     },
     { name: "Rydal Water", coordinates: [-2.995182, 54.446928], zoom: 12 },
   ];
-
+  // '/src/lib/images/wastwater.png'
   const geojson = {
         'type': 'FeatureCollection',
         'features': [
