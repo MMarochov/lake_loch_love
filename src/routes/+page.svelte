@@ -319,6 +319,9 @@
         appears in 10m increments.
       </p>
       <p class="spaced">
+        The map was made with Sveltekit, Maplibre GL JS, and Blender. You can view the code on <a href="https://github.com/MMarochov/lake_loch_love">Github.</a>
+      </p>
+      <p class="spaced">
         Inspired by William B Davis's <a
           href="https://willymaps.github.io/depth/"
           target="_blank">fantastic visualisation of the Great Lakes!</a
@@ -368,6 +371,10 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+  }
+
+  .banner > p {
+    margin: 0 0 0 10px;
   }
 
   h1 {

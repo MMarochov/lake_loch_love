@@ -57,6 +57,9 @@
       70vh - 20px
     ); /* Subtract twice the margin value from the height */
     border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -khtml-border-radius: 50%;
     overflow: hidden; /* Ensure map content stays within the circular shape */
   }
 
