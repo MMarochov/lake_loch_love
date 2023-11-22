@@ -5,19 +5,19 @@
   import ZoomButton from "$lib/components/ZoomButton.svelte";
   import Modal from "$lib/components/Modal.svelte";
   import type { Map as MapLibreMap, MapOptions } from "maplibre-gl";
+  import maplibregl from "maplibre-gl";
   import { GeoJsonLayer } from "$lib/layers/geojsonlayer";
   import lakes_data from "$lib/data/merged_lakes.json";
   import OS_logo from "$lib/images/OS_logo_mono_dark_rgb.png";
-  
-  
+
   // Init
-  export let data
-  let key = data.OS_API_KEY
+  export let data;
+  let key = data.OS_API_KEY;
   let showModal = false;
   let map: MapLibreMap;
 
   let lakes = [
-    { name: "Wast Water", coordinates: [-3.296972, 54.439684], zoom: 11.7 },
+    { name: "Wastwater", coordinates: [-3.296972, 54.439684], zoom: 11.7 },
     {
       name: "Bassenthwaite Lake",
       coordinates: [-3.214059, 54.649457],
@@ -43,42 +43,90 @@
     { name: "Rydal Water", coordinates: [-2.995182, 54.446928], zoom: 12 },
   ];
 
-  let layer = new GeoJsonLayer("test", "Blue Shape", lakes_data, "fill-extrusion", {
-    // See the MapLibre Style Specification for details on data expressions.
-    // https://maplibre.org/maplibre-style-spec/expressions/
+  const geojson = {
+        'type': 'FeatureCollection',
+        'features': [
+            {
+                'type': 'Feature',
+                'properties': {
+                    'message': 'Wastwater',
+                    'iconSize': [300, 300],
+                    'imageUrl': '/src/lib/images/wastwater.png'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-3.296972, 54.439684]
+                }
+            },
+            {
+                'type': 'Feature',
+                'properties': {
+                    'message': 'Bar',
+                    'iconSize': [150, 150],
+                    'imageUrl': 'https://3dprintingindustry.com/wp-content/uploads/2017/09/time-100-influential-photos-loch-ness-monster-21.jpg'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-3.021468, 54.449453]
+                }
+            },
+            {
+                'type': 'Feature',
+                'properties': {
+                    'message': 'Baz',
+                    'iconSize': [40, 40],
+                    'imageUrl': 'https://example.com/image3.png'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-63.29223632812499, -18.28151823530889]
+                }
+            }
+        ]
+    };
 
-    // Get the fill-extrusion-color from the source 'color' property.
-    "fill-extrusion-color": [
-      "interpolate",
-      ["linear"],
-      ["get", "depth"],
-      0,
-      "#C2C2FF",
-      10,
-      "#9999FF",
-      20,
-      "#7070ff",
-      30,
-      "#4747ff",
-      40,
-      "#1f1fff",
-      50,
-      "#0000f5",
-      60,
-      "#00007a",
-      70,
-      "#00003d",
-    ],
+  let layer = new GeoJsonLayer(
+    "test",
+    "Blue Shape",
+    lakes_data,
+    "fill-extrusion",
+    {
+      // See the MapLibre Style Specification for details on data expressions.
+      // https://maplibre.org/maplibre-style-spec/expressions/
 
-    // Get fill-extrusion-height from the source 'height' property.
-    "fill-extrusion-height": ["get", "depth"],
+      // Get the fill-extrusion-color from the source 'color' property.
+      "fill-extrusion-color": [
+        "interpolate",
+        ["linear"],
+        ["get", "depth"],
+        0,
+        "#C2C2FF",
+        10,
+        "#9999FF",
+        20,
+        "#7070ff",
+        30,
+        "#4747ff",
+        40,
+        "#1f1fff",
+        50,
+        "#0000f5",
+        60,
+        "#00007a",
+        70,
+        "#00003d",
+      ],
 
-    // Get fill-extrusion-base from the source 'base_height' property.
-    "fill-extrusion-base": 80,
+      // Get fill-extrusion-height from the source 'height' property.
+      "fill-extrusion-height": ["get", "depth"],
 
-    // Make extrusions slightly opaque for see through indoor walls.
-    "fill-extrusion-opacity": 1,
-  });
+      // Get fill-extrusion-base from the source 'base_height' property.
+      "fill-extrusion-base": 80,
+
+      // Make extrusions slightly opaque for see through indoor walls.
+      "fill-extrusion-opacity": 1,
+    }
+  );
 
   const options: MapOptions = {
     container: "",
@@ -102,65 +150,83 @@
     map.on("load", () => {
       layer.setMap(map).render();
     });
+
+    // add markers to map
+    geojson.features.forEach((marker) => {
+      // create a DOM element for the marker
+      const el = document.createElement("div");
+      el.className = "marker";
+      el.style.backgroundImage = `url(${marker.properties.imageUrl})`;
+      el.style.width = `${marker.properties.iconSize[0]}px`;
+      el.style.height = `${marker.properties.iconSize[1]}px`;
+
+
+
+      // add marker to map
+      new maplibregl.Marker({ element: el })
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+
+      let zoomThreshold = 11
+
+      // update marker visibility on map zoom
+  map.on('zoom', () => {
+    const zoom = map.getZoom();
+
+    if (zoom < zoomThreshold) {
+      // Hide the marker if the zoom level is below the threshold
+      el.style.display = 'none';
+    } else {
+      // Show the marker if the zoom level is at or above the threshold
+      el.style.display = 'block';
+    }
+  });
+        
+    });
     // url: '/src/lib/images/bassenthwaite.png'
 
     let images = [
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png',
-        coordinates: [-3.237511, 54.647718]
+        url: "https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png",
+        coordinates: [-3.237511, 54.647718],
       },
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png',
-        coordinates: [-2.797794, 54.515428]
-      }
+        url: "https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png",
+        coordinates: [-2.797794, 54.515428],
+      },
     ];
 
-    images.forEach((imageObj, index) => {
-      map.loadImage(imageObj.url, (error, image) => {
-        if (error) throw error;
-        map.addImage(`image-${index}`, image);
-        map.addSource(`point-${index}`, {
-          'type': 'geojson',
-          'data': {
-            'type': 'FeatureCollection',
-            'features' : [
-              {
-                'type': 'Feature',
-                'geometry': {
-                  'type': 'Point',
-                  'coordinates': imageObj.coordinates
-                }
-              }
-            ]
-          }
-        });
-        map.addLayer({
-          'id': `points-${index}`,
-          'type': 'symbol',
-          'source': `point-${index}`,
-          'layout': {
-            'icon-image': `image-${index}`,
-            'icon-size': 0.5
-          }
-        });
-        // Move the image layer above other layers
-        map.moveLayer(`points-${index}`);
-      });
-    })
+    // images.forEach((imageObj, index) => {
+    //   map.loadImage(imageObj.url, (error, image) => {
+    //     if (error) throw error;
+    //     map.addImage(`image-${index}`, image);
+    //     map.addSource(`point-${index}`, {
+    //       'type': 'geojson',
+    //       'data': {
+    //         'type': 'FeatureCollection',
+    //         'features' : [
+    //           {
+    //             'type': 'Feature',
+    //             'geometry': {
+    //               'type': 'Point',
+    //               'coordinates': imageObj.coordinates
+    //             }
+    //           }
+    //         ]
+    //       }
+    //     });
+    //     map.addLayer({
+    //       'id': `points-${index}`,
+    //       'type': 'symbol',
+    //       'source': `point-${index}`,
+    //       'layout': {
+    //         'icon-image': `image-${index}`,
+    //         'icon-size': 0.5
+    //       }
+    //     });
+    //   });
+    // })
   }
-
-  // Helper function to find the layer ID by name
-function findLayerIdByName(style, layerName) {
-  const layers = style.layers;
-  for (let i = 0; i < layers.length; i++) {
-    const layer = layers[i];
-    if (layer.type !== 'background' && layer.id.indexOf(layerName) !== -1) {
-      return layer.id;
-    }
-  }
-  return null;
-} 
-
 
   function handleZoomButtonClick(event) {
     let coordinates = event.coordinates;
@@ -250,6 +316,7 @@ function findLayerIdByName(style, layerName) {
 </main>
 
 <style>
+
   main {
     position: relative;
     height: 100%;
