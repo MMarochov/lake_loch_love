@@ -50,7 +50,7 @@
                 'type': 'Feature',
                 'properties': {
                     'message': 'Wastwater',
-                    'iconSize': [300, 300],
+                    'iconSize': [250, 250],
                     'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/wastwater.png?raw=true'
                 },
                 'geometry': {
@@ -61,13 +61,84 @@
             {
                 'type': 'Feature',
                 'properties': {
-                    'message': 'Bar',
-                    'iconSize': [150, 150],
-                    'imageUrl': 'https://3dprintingindustry.com/wp-content/uploads/2017/09/time-100-influential-photos-loch-ness-monster-21.jpg'
+                    'message': 'Haweswater',
+                    'iconSize': [320, 320],
+                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/haweswater.png'
                 },
                 'geometry': {
                     'type': 'Point',
-                    'coordinates': [-3.021468, 54.449453]
+                    'coordinates': [-2.811175, 54.508294]
+                }
+            },            {
+                'type': 'Feature',
+                'properties': {
+                    'message': 'Ullswater',
+                    'iconSize': [320, 320],
+                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/ullswater.png'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-2.922229, 54.555297]
+                }
+            },
+            {
+                'type': 'Feature',
+                'properties': {
+                    'message': 'Grasmere',
+                    'iconSize': [320, 320],
+                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/grasmere.png'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-3.024891, 54.451703]
+                }
+            },
+            {
+                'type': 'Feature',
+                'properties': {
+                    'message': 'Rydal',
+                    'iconSize': [320, 320],
+                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/rydal.png'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-2.989745, 54.435421]
+                }
+            },
+            {
+                'type': 'Feature',
+                'properties': {
+                    'message': 'Ennerdale',
+                    'iconSize': [320, 320],
+                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/ennerdale.png'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-3.388712, 54.511618]
+                }
+            },
+            {
+                'type': 'Feature',
+                'properties': {
+                    'message': 'Bassenthwaite',
+                    'iconSize': [390, 390],
+                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/bassenthwaite.png'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-3.221940, 54.644154]
+                }
+            },
+            {
+                'type': 'Feature',
+                'properties': {
+                    'message': 'Esthwaite',
+                    'iconSize': [380, 380],
+                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/esthwaite.png'
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [-2.992250, 54.354536]
                 }
             },
             {
@@ -75,7 +146,7 @@
                 'properties': {
                     'message': 'Baz',
                     'iconSize': [40, 40],
-                    'imageUrl': 'https://example.com/image3.png'
+                    'imageUrl': 'https://3dprintingindustry.com/wp-content/uploads/2017/09/time-100-influential-photos-loch-ness-monster-21.jpg'
                 },
                 'geometry': {
                     'type': 'Point',
@@ -132,12 +203,12 @@
     container: "",
     minZoom: 6,
     maxZoom: 13,
-    pitch: 50,
+    pitch: 35,
     dragRotate: true,
     style:
       "https://raw.githubusercontent.com/OrdnanceSurvey/OS-Vector-Tile-API-Stylesheets/master/OS_VTS_3857_Open_Greyscale.json",
-    center: [-2.803704, 54.51065],
-    zoom: 11.6,
+    center: [-2.801575, 54.513816],
+    zoom: 11,
     transformRequest: (url) => {
       if (!/[?&]key=/.test(url)) url += `?key=${key}`;
       return {
@@ -167,7 +238,7 @@
         .setLngLat(marker.geometry.coordinates)
         .addTo(map);
 
-      let zoomThreshold = 11
+      let zoomThreshold = 10.4
 
       // update marker visibility on map zoom
   map.on('zoom', () => {
