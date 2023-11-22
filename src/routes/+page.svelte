@@ -51,7 +51,7 @@
                 'properties': {
                     'message': 'Wastwater',
                     'iconSize': [300, 300],
-                    'imageUrl': '/src/lib/images/wastwater.png'
+                    'imageUrl': 'https://github.com/MMarochov/lake_loch_love/blob/main/src/lib/images/wastwater.png?raw=true'
                 },
                 'geometry': {
                     'type': 'Point',
