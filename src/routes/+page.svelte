@@ -150,19 +150,6 @@
           coordinates: [-2.99225, 54.354536],
         },
       },
-      {
-        type: "Feature",
-        properties: {
-          message: "Baz",
-          iconSize: [40, 40],
-          imageUrl:
-            "https://3dprintingindustry.com/wp-content/uploads/2017/09/time-100-influential-photos-loch-ness-monster-21.jpg",
-        },
-        geometry: {
-          type: "Point",
-          coordinates: [-63.29223632812499, -18.28151823530889],
-        },
-      },
     ],
   };
 
@@ -172,10 +159,6 @@
     lakes_data,
     "fill-extrusion",
     {
-      // See the MapLibre Style Specification for details on data expressions.
-      // https://maplibre.org/maplibre-style-spec/expressions/
-
-      // Get the fill-extrusion-color from the source 'color' property.
       "fill-extrusion-color": [
         "interpolate",
         ["linear"],
@@ -197,13 +180,8 @@
         70,
         "#2b1c35",
       ],
-
-      // Get fill-extrusion-height from the source 'height' property.
       "fill-extrusion-height": ["get", "depth"],
-
-      // Get fill-extrusion-base from the source 'base_height' property.
       "fill-extrusion-base": 80,
-
       // Make extrusions slightly opaque for see through indoor walls.
       "fill-extrusion-opacity": 1,
     }
@@ -277,9 +255,13 @@
     });
   }
 </script>
+
 <svelte:head>
-	<title>Lake, Loch, Love</title>
-	<meta name="description" content="The Bathymetry of the Lake District National Park" />
+  <title>Lake, Loch, Love</title>
+  <meta
+    name="description"
+    content="The Bathymetry of the Lake District National Park"
+  />
 </svelte:head>
 
 <main>
@@ -296,7 +278,6 @@
     <button on:click={() => (showModal = true)}
       ><span class="material-symbols-outlined"> info </span></button
     >
-
     <Modal bind:showModal>
       <h2 slot="header">
         Bathymetry
@@ -305,7 +286,6 @@
           oceans, seas, or lakes.</small
         >
       </h2>
-
       <p class="definition-list" />
       <p class="spaced">
         Welcome to this interactive 3D visualisation showing the bathymetry of
@@ -319,7 +299,10 @@
         appears in 10m increments.
       </p>
       <p class="spaced">
-        The map was made with Sveltekit, Maplibre GL JS, and Blender. You can view the code on <a href="https://github.com/MMarochov/lake_loch_love">Github.</a>
+        The map was made with Sveltekit, Maplibre GL JS, and Blender. You can
+        view the code on <a href="https://github.com/MMarochov/lake_loch_love"
+          >Github.</a
+        >
       </p>
       <p class="spaced">
         Inspired by William B Davis's <a
@@ -331,7 +314,6 @@
     </Modal>
   </section>
   <h1>The Bathymetry of the Lake District National Park</h1>
-
   <p>Choose a lake to explore!</p>
   <section class="content-container">
     <section class="button-container">
@@ -346,7 +328,6 @@
         />
       {/each}
     </section>
-
     <Map {options} bind:map />
   </section>
   <p class="instructions">
